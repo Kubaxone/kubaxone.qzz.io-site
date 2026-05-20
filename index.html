@@ -3,62 +3,68 @@
 <head>
   <meta charset="utf-8">
   <title>Kubaxone (He/Him)</title>
+
+  <!-- 🔥 YOUR ORIGINAL CSS (RESTORED) -->
+  <link href="_assets/fa02bf26d58b7c49.ltr.css" rel="stylesheet">
+  <link href="_assets/static_font_4.ltr.css" rel="stylesheet">
 </head>
 
 <body>
 
 <div id="root"></div>
 
-<!-- YOUR CONTENT AREA (minimal touch version) -->
-<div style="padding:20px; font-family:Arial;">
-
-  <!-- PROFILE IMAGE (FIXED) -->
-  <img src="/static/profile.png"
-       style="width:120px;height:120px;border-radius:50%;display:block;margin-bottom:10px;"
-       id="pfp">
-
-  <h1>Kubaxone (He/Him)</h1>
-
-  <button id="resumeBtn">Resume</button>
-  <button id="emailBtn">Email me</button>
-  <button id="portfolioBtn">Portfolio</button>
-
-  <div id="resume" style="display:none;margin-top:10px;">
-    <p>Resume section content here</p>
-  </div>
-
-  <div id="email" style="display:none;margin-top:10px;">
-    <p>your@email.com</p>
-  </div>
-
-  <div id="portfolio" style="display:none;margin-top:10px;">
-    <p>Portfolio content here</p>
-  </div>
-
-</div>
-
+<!-- minimal interaction layer (does NOT replace Canva layout) -->
 <script>
-  const resume = document.getElementById("resume");
-  const email = document.getElementById("email");
-  const portfolio = document.getElementById("portfolio");
-
-  document.getElementById("resumeBtn").onclick = () => {
-    resume.style.display = resume.style.display === "block" ? "none" : "block";
-  };
-
-  document.getElementById("emailBtn").onclick = () => {
-    email.style.display = email.style.display === "block" ? "none" : "block";
-  };
-
-  document.getElementById("portfolioBtn").onclick = () => {
-    portfolio.style.display = portfolio.style.display === "block" ? "none" : "block";
-  };
-
-  // small extra interactivity (optional but harmless)
-  document.getElementById("pfp").onclick = () => {
-    alert("Kubaxone profile clicked!");
-  };
+  function toggle(id) {
+    const el = document.getElementById(id);
+    if (!el) return;
+    el.style.display = el.style.display === "block" ? "none" : "block";
+  }
 </script>
+
+<!-- we only "attach behavior" to existing Canva buttons if they exist -->
+<script>
+window.addEventListener("load", () => {
+
+  // FIX PROFILE IMAGE IF YOU ADD IT IN CANVA OR ROOT
+  const trySetImage = () => {
+    const imgs = document.querySelectorAll("img");
+    imgs.forEach(img => {
+      if (img.src.includes("MAHKOScPFLI") || img.alt === "profile") {
+        img.src = "/static/profile.png";
+      }
+    });
+  };
+
+  trySetImage();
+
+  // Example: hook Canva buttons by text (safe fallback)
+  document.body.addEventListener("click", (e) => {
+    const t = e.target;
+
+    if (!t || !t.innerText) return;
+
+    if (t.innerText.includes("Resume")) {
+      console.log("Resume clicked");
+    }
+
+    if (t.innerText.includes("Email")) {
+      console.log("Email clicked");
+    }
+
+    if (t.innerText.includes("Portfolio")) {
+      console.log("Portfolio clicked");
+    }
+  });
+
+});
+</script>
+
+<!-- KEEP CANVA JS (IMPORTANT) -->
+<script src="_assets/65effe4f9563143c.runtime.js" defer></script>
+<script src="_assets/4f5d61b605b3b9cd.s4le6a.vendor.js" defer></script>
+<script src="_assets/69615eb1c477b9cb.vendor.js" defer></script>
+<script src="_assets/a0a7900ffbf67ec2.js" defer></script>
 
 </body>
 </html>
