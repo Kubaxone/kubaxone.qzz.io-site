@@ -1,131 +1,64 @@
 <!DOCTYPE html>
-<html lang="en">
+<html dir="ltr" lang="en" class="theme light classic">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta charset="utf-8">
   <title>Kubaxone (He/Him)</title>
-
-  <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #0f0f0f;
-      color: white;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-
-    .card {
-      background: #1c1c1c;
-      padding: 25px;
-      border-radius: 16px;
-      width: 320px;
-      text-align: center;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-      transition: transform 0.2s ease;
-    }
-
-    .card:hover {
-      transform: scale(1.03);
-    }
-
-    img {
-      width: 120px;
-      height: 120px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 3px solid #4aa3ff;
-      cursor: pointer;
-    }
-
-    h1 {
-      margin: 15px 0 5px;
-    }
-
-    p {
-      margin: 5px 0;
-      opacity: 0.8;
-    }
-
-    .hidden {
-      display: none;
-      margin-top: 10px;
-      font-size: 14px;
-      color: #aaa;
-    }
-
-    input {
-      margin-top: 10px;
-      padding: 8px;
-      width: 90%;
-      border-radius: 8px;
-      border: none;
-      outline: none;
-    }
-
-    button {
-      margin-top: 10px;
-      padding: 8px 12px;
-      border: none;
-      border-radius: 8px;
-      background: #4aa3ff;
-      color: white;
-      cursor: pointer;
-    }
-
-    button:hover {
-      background: #2f8de0;
-    }
-  </style>
 </head>
 
 <body>
 
-  <div class="card">
-    <!-- PROFILE IMAGE FROM STATIC -->
-    <img src="/static/profile.png" id="profilePic" />
+<div id="root"></div>
 
-    <h1>Kubaxone</h1>
-    <p>He/Him • Programmer</p>
+<!-- YOUR CONTENT AREA (minimal touch version) -->
+<div style="padding:20px; font-family:Arial;">
 
-    <input id="statusInput" placeholder="Set your status..." />
-    <button onclick="updateStatus()">Update Status</button>
+  <!-- PROFILE IMAGE (FIXED) -->
+  <img src="/static/profile.png"
+       style="width:120px;height:120px;border-radius:50%;display:block;margin-bottom:10px;"
+       id="pfp">
 
-    <p id="statusText" class="hidden"></p>
+  <h1>Kubaxone (He/Him)</h1>
 
-    <button onclick="toggleInfo()">Toggle Info</button>
+  <button id="resumeBtn">Resume</button>
+  <button id="emailBtn">Email me</button>
+  <button id="portfolioBtn">Portfolio</button>
 
-    <div id="info" class="hidden">
-      <p>Python • HTML • CSS • JS</p>
-      <p>I build games, bots & websites</p>
-    </div>
+  <div id="resume" style="display:none;margin-top:10px;">
+    <p>Resume section content here</p>
   </div>
 
-  <script>
-    const profilePic = document.getElementById("profilePic");
-    const info = document.getElementById("info");
-    const statusText = document.getElementById("statusText");
+  <div id="email" style="display:none;margin-top:10px;">
+    <p>your@email.com</p>
+  </div>
 
-    function toggleInfo() {
-      info.style.display = info.style.display === "block" ? "none" : "block";
-    }
+  <div id="portfolio" style="display:none;margin-top:10px;">
+    <p>Portfolio content here</p>
+  </div>
 
-    function updateStatus() {
-      const val = document.getElementById("statusInput").value;
-      if (!val) return;
+</div>
 
-      statusText.textContent = "Status: " + val;
-      statusText.style.display = "block";
-    }
+<script>
+  const resume = document.getElementById("resume");
+  const email = document.getElementById("email");
+  const portfolio = document.getElementById("portfolio");
 
-    // click image to "pulse"
-    profilePic.onclick = () => {
-      profilePic.style.transform = "scale(1.1)";
-      setTimeout(() => profilePic.style.transform = "scale(1)", 150);
-    };
-  </script>
+  document.getElementById("resumeBtn").onclick = () => {
+    resume.style.display = resume.style.display === "block" ? "none" : "block";
+  };
+
+  document.getElementById("emailBtn").onclick = () => {
+    email.style.display = email.style.display === "block" ? "none" : "block";
+  };
+
+  document.getElementById("portfolioBtn").onclick = () => {
+    portfolio.style.display = portfolio.style.display === "block" ? "none" : "block";
+  };
+
+  // small extra interactivity (optional but harmless)
+  document.getElementById("pfp").onclick = () => {
+    alert("Kubaxone profile clicked!");
+  };
+</script>
 
 </body>
 </html>
